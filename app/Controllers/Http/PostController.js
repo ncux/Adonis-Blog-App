@@ -13,7 +13,7 @@ class PostController {
 
   // index for all posts
   async allPosts({ view }) {
-    const posts = await Post.all();
+    const posts = await Post.query().orderBy('created_at', 'desc').fetch();
     return view.render('posts/allposts', {
       title: 'All user posts',
       posts: posts.toJSON()
